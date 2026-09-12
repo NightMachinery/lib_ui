@@ -92,6 +92,10 @@ const Emoji::One *Integration::defaultEmojiVariant(const Emoji::One *emoji) {
 	return emoji;
 }
 
+rpl::producer<bool> Integration::systemTextReplacesEnabled() {
+	return rpl::single(true);
+}
+
 rpl::producer<> Integration::forcePopupMenuHideRequests() {
 	return rpl::never<rpl::empty_value>();
 }

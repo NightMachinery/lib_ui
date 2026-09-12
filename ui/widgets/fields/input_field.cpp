@@ -1826,6 +1826,10 @@ InputField::InputField(
 #ifdef Q_OS_MAC
 	_systemTextReplaces = std::make_unique<SystemTextReplaces>();
 #endif
+	Integration::Instance().systemTextReplacesEnabled(
+	) | rpl::on_next([=](bool value) {
+		_systemTextReplacesEnabled = value;
+	}, _systemTextReplacesLifetime);
 	_inner->setDocument(CreateChild<InputDocument>(_inner.get(), _st));
 	_inner->setAcceptRichText(false);
 	resize(_st.width, _minHeight);
@@ -2165,11 +2169,13 @@ void InputField::setInstantReplacesEnabled(
 		_instantReplacesEnabled = value;
 	}, lifetime());
 	if (systemTextReplacesEnabled) {
+		_systemTextReplacesLifetime.destroy();
+		_systemTextReplacesLifetime = rpl::lifetime();
 		std::move(
 			systemTextReplacesEnabled
 		) | rpl::on_next([=](bool value) {
 			_systemTextReplacesEnabled = value;
-		}, lifetime());
+		}, _systemTextReplacesLifetime);
 	}
 }
 

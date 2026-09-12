@@ -710,6 +710,7 @@ private:
 	};
 	std::unique_ptr<SystemTextReplaces> _systemTextReplaces;
 	bool _systemTextReplacesEnabled = true;
+	rpl::lifetime _systemTextReplacesLifetime;
 
 	rpl::event_stream<DocumentChangeInfo> _documentContentsChanges;
 	rpl::event_stream<MarkdownTag> _markdownTagApplies;
