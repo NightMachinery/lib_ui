@@ -65,6 +65,7 @@ public:
 	[[nodiscard]] virtual QString convertTagToMimeTag(const QString &tagId);
 	[[nodiscard]] virtual const Emoji::One *defaultEmojiVariant(
 		const Emoji::One *emoji);
+	[[nodiscard]] virtual rpl::producer<bool> systemTextReplacesEnabled();
 	// [[nodiscard]] virtual bool allowClickHandlerActivation(
 	// 	const std::shared_ptr<ClickHandler> &handler,
 	// 	const ClickContext &context);
