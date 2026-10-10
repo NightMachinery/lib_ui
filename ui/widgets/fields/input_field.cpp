@@ -5144,9 +5144,14 @@ void InputField::processInstantReplaces(const QString &appended) {
 	auto i = typed.size();
 	do {
 		if (!node->text.isEmpty()) {
-			applyInstantReplace(typed.mid(i) + appended, node->text);
-			return;
-		} else if (!i) {
+			const auto what = typed.mid(i) + appended;
+			if (!Integration::Exists()
+				|| Integration::Instance().instantReplaceAllowed(what, node->text)) {
+				applyInstantReplace(what, node->text);
+				return;
+			}
+		}
+		if (!i) {
 			return;
 		}
 		const auto it = node->tail.find(typed[--i]);

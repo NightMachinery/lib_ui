@@ -96,6 +96,12 @@ rpl::producer<bool> Integration::systemTextReplacesEnabled() {
 	return rpl::single(true);
 }
 
+bool Integration::instantReplaceAllowed(
+		const QString &,
+		const QString &) {
+	return true;
+}
+
 rpl::producer<> Integration::forcePopupMenuHideRequests() {
 	return rpl::never<rpl::empty_value>();
 }

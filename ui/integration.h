@@ -66,6 +66,9 @@ public:
 	[[nodiscard]] virtual const Emoji::One *defaultEmojiVariant(
 		const Emoji::One *emoji);
 	[[nodiscard]] virtual rpl::producer<bool> systemTextReplacesEnabled();
+	[[nodiscard]] virtual bool instantReplaceAllowed(
+		const QString &what,
+		const QString &with);
 	// [[nodiscard]] virtual bool allowClickHandlerActivation(
 	// 	const std::shared_ptr<ClickHandler> &handler,
 	// 	const ClickContext &context);
